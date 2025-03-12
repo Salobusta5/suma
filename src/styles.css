@@ -1,11 +1,11 @@
 /* src/styles.scss */
 :root {
     --bg-color: #121212;
-    --card-bg: #1e1e1e;
-    --primary: #4caf50;
-    --primary-dark: #388e3c;
-    --text-color: #f0f0f0;
-    --text-secondary: #aaaaaa;
+    --card-bg: #2c2c2c;
+    --primary: #FF69B4; /* Pink */
+    --primary-dark: #DB7093; /* Darker Pink */
+    --text-color: #FFFFFF; /* White */
+    --text-secondary: #E0E0E0; /* Light Gray */
     --error: #f44336;
     --border-color: #333333;
   }
@@ -42,11 +42,25 @@
       gap: 1rem;
       
       a {
-        text-decoration: none;
-        color: var(--text-color);
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        transition: background-color 0.3s;
+          text-decoration: none;
+          text-align: center;
+          color: var(--text-color);
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          transition: background-color 0.3s;
+        
+        &:hover, &.active {
+          background-color: var(--primary);
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+          color: var(--text-color);
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          transition: background-color 0.3s;
         
         &:hover, &.active {
           background-color: var(--primary);
@@ -55,13 +69,13 @@
     }
   }
   
-  .card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
   
   .form-group {
     margin-bottom: 1.5rem;
@@ -92,22 +106,30 @@
       resize: vertical;
     }
   }
+
+  @media (max-width: 768px) {
+    .form-group{
+      padding: 0.5rem;
+    }
+  }
   
   .btn {
+    background-color: var(--primary);
+    color: white;
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
-    
-    &-primary {
-      background-color: var(--primary);
-      color: white;
-      
-      &:hover {
-        background-color: var(--primary-dark);
-      }
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.05); /* Slightly enlarge on hover */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    }
+    &:active {
+      transform: scale(0.95); /* Slightly shrink on click */
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Adjust shadow on click */
     }
     
     &-danger {
@@ -145,11 +167,15 @@
     
     .report-info {
       flex: 1;
+      color: white;
+
+
     }
     
     .report-actions {
       display: flex;
       gap: 0.5rem;
+      
     }
     
     .status-badge {
@@ -158,6 +184,17 @@
       border-radius: 4px;
       font-size: 0.75rem;
       background-color: var(--primary);
+    }
+    
+  }
+
+  @media (max-width: 768px) {
+    .report-list-item .report-actions {
+      flex-direction: column;
+    }
+    .btn{
+      padding: 0.5rem 1rem;
+
     }
   }
   
@@ -170,4 +207,16 @@
   .section-description {
     margin-bottom: 1.5rem;
     color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 1.2rem;
+    }
+
+    .app-header h1 {
+      font-size: 1.5rem;
+    }
+
+    
   }
