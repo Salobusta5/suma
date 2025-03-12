@@ -1,0 +1,35 @@
+<!-- src/app/components/reporte-detalle/reporte-detalle.component.html -->
+<div class="card" *ngIf="reporte">
+    <h2 class="section-title">Detalle del Reporte: {{ reporte.id }}</h2>
+    
+    <div class="reporte-detalle">
+      <div class="reporte-imagen">
+        <img [src]="reporte.imagen" alt="Imagen del equipo">
+      </div>
+      
+      <div class="reporte-info">
+        <div class="info-grupo">
+          <h3>Información General</h3>
+          <p><strong>ID del Equipo:</strong> {{ reporte.idEquipo }}</p>
+          <p><strong>Cliente:</strong> {{ reporte.nombreCliente }}</p>
+          <p><strong>Fecha:</strong> {{ formatDate(reporte.fecha) }}</p>
+          <p><strong>Estado:</strong> <span class="status-badge">{{ reporte.estado }}</span></p>
+        </div>
+        
+        <div class="info-grupo">
+          <h3>Descripción del Problema</h3>
+          <p class="reporte-descripcion">{{ reporte.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="btn btn-primary" routerLink="/lista-reportes">Volver a la lista</button>
+      <button class="btn btn-danger" (click)="eliminarReporte()">Eliminar Reporte</button>
+    </div>
+  </div>
+  
+  <div class="not-found" *ngIf="!reporte">
+    <p>El reporte no existe o ha sido eliminado.</p>
+    <button class="btn btn-primary" routerLink="/lista-reportes">Volver a la lista</button>
+  </div>

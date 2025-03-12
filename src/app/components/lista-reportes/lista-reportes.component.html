@@ -1,0 +1,51 @@
+<!-- src/app/components/lista-reportes/lista-reportes.component.html -->
+<div class="card">
+    <h2 class="section-title">2. Visualizar Lista de Reportes</h2>
+    <p class="section-description">Como técnico, necesito ver todos los reportes creados de manera organizada:</p>
+    
+    <div *ngIf="reportes.length === 0" class="no-reports">
+      <p>No hay reportes disponibles. Crea un nuevo reporte para comenzar.</p>
+    </div>
+    
+    <div class="report-list">
+      <div *ngFor="let reporte of reportes" class="report-list-item">
+        <div class="report-image-container">
+          <img [src]="reporte.imagen" alt="Imagen del equipo" class="report-image">
+        </div>
+        
+        <div class="report-info">
+          <div class="report-date">
+            <i class="date-icon"></i>
+            <span>{{ formatDate(reporte.fecha) }}</span>
+          </div>
+          
+          <div class="report-id">
+            <i class="id-icon"></i>
+            <span>{{ reporte.idEquipo }}</span>
+          </div>
+          
+          <div class="report-client">
+            <i class="client-icon"></i>
+            <span>{{ reporte.nombreCliente }}</span>
+          </div>
+          
+          <div class="report-status">
+            <span class="status-badge">{{ reporte.estado }}</span>
+          </div>
+          
+          <div class="report-description">
+            <p>{{ reporte.descripcion }}</p>
+          </div>
+        </div>
+        
+        <div class="report-actions">
+          <button class="btn btn-primary" [routerLink]="['/reporte', reporte.id]">
+            Ver Detalles
+          </button>
+          <button class="btn btn-danger" (click)="eliminarReporte(reporte.id, $event)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

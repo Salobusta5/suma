@@ -1,0 +1,71 @@
+<!-- src/app/components/crear-reporte/crear-reporte.component.html -->
+<div class="card">
+    <h2 class="section-title">1. Crear Nuevo Reporte</h2>
+    <p class="section-description">Como técnico de mantenimiento, necesito poder documentar el estado de un equipo mediante:</p>
+    
+    <form (ngSubmit)="guardarReporte()">
+      <div class="form-group">
+        <label for="idEquipo">ID del Equipo</label>
+        <input 
+          type="text" 
+          id="idEquipo" 
+          [(ngModel)]="idEquipo" 
+          name="idEquipo"
+          placeholder="EQ-2024-001"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="nombreCliente">Nombre del Cliente</label>
+        <input 
+          type="text" 
+          id="nombreCliente" 
+          [(ngModel)]="nombreCliente" 
+          name="nombreCliente"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label>Imagen del Equipo</label>
+        <div class="image-actions">
+          <input 
+            type="file" 
+            accept="image/*" 
+            (change)="onFileSelected($event)"
+            class="file-input"
+          >
+          <button 
+            type="button" 
+            class="btn btn-primary" 
+            (click)="capturarImagen()"
+          >
+            Tomar Foto
+          </button>
+        </div>
+        
+        <div *ngIf="imagen" class="image-container">
+          <img [src]="imagen" alt="Vista previa" class="image-preview">
+        </div>
+        <div *ngIf="!imagen" class="image-placeholder">
+          <div class="placeholder-content">
+            <span>300×150</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="descripcion">Descripción del Problema</label>
+        <textarea 
+          id="descripcion" 
+          [(ngModel)]="descripcion" 
+          name="descripcion"
+          placeholder="Describe el estado y problema del equipo..."
+          required
+        ></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Guardar Reporte</button>
+    </form>
+  </div>
